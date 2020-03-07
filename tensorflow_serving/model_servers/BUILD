@@ -355,9 +355,9 @@ cc_library(
         ":server_lib",
         "@org_tensorflow//tensorflow/c:c_api",
         "@org_tensorflow//tensorflow/core:lib",
-        "@org_tensorflow//tensorflow/core/platform/cloud:gcs_file_system",
-        "@org_tensorflow//tensorflow/core/platform/hadoop:hadoop_file_system",
-        "@org_tensorflow//tensorflow/core/platform/s3:s3_file_system",
+#        "@org_tensorflow//tensorflow/core/platform/cloud:gcs_file_system",
+#        "@org_tensorflow//tensorflow/core/platform/hadoop:hadoop_file_system",
+#        "@org_tensorflow//tensorflow/core/platform/s3:s3_file_system",
     ],
 )
 
