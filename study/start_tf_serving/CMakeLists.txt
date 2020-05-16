@@ -8,13 +8,14 @@ project(start_tf_serving)
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
 
-set(DEPENDENCY_PREFIX "../../../../opensource/")
+set(macOS_PREFIX "/Users/taozj/Dropbox/repos/macOS/")
+set(tensor_PREFIX "/Users/taozj/Dropbox/repos/machine_learning/TENSORFLOW/tensorflow-branch-v1.13.z")
 set(INCLUDE_DIRS
-    ${DEPENDENCY_PREFIX}/tensorflow_and_paddle/tensorflow_install_v1.13.1/include
-    ${DEPENDENCY_PREFIX}/tensorflow_and_paddle/tensorflow_install_v1.13.1/include/abseil-cpp
-    ${DEPENDENCY_PREFIX}/tensorflow_and_paddle/tensorflow_install_v1.13.1/include/eigen_archive
-    /home/user/repos/machine_learning/tensorflow_serving_v1.13.z/bazel-genfiles/
-    /home/user/prefix/include/
+    ${macOS_PREFIX}/include
+    ${macOS_PREFIX}/include/eigen3/
+    ${tensor_PREFIX}/serving_v1.13.z/bazel-genfiles/
+    ${tensor_PREFIX}/tensorflow_v1.13.z/bazel-genfiles/
+    ${tensor_PREFIX}/tensorflow_v1.13.z/
     ${PROJECT_SOURCE_DIR}/
 )
 include_directories( ${INCLUDE_DIRS} )
@@ -22,9 +23,8 @@ include_directories( ${INCLUDE_DIRS} )
 add_subdirectory( apis/ )
 
 link_directories(
-    ${DEPENDENCY_PREFIX}/tensorflow_and_paddle/tensorflow_install_v1.13.1/lib_monolithic/
-    /home/user/repos/machine_learning/tensorflow_v1.13.z/bazel-bin/tensorflow
-    /home/user/prefix/lib/
+    ${tensor_PREFIX}/tensorflow_v1.13.z/bazel-bin/tensorflow/
+    ${macOS_PREFIX}/lib
 )
 
 set (EXTRA_LIBS ${EXTRA_LIBS} apis)
@@ -37,5 +37,5 @@ set (EXTRA_LIBS ${EXTRA_LIBS} pthread tensorflow_cc)
 add_executable(start_tf_client client.cc)
 target_link_libraries(
     start_tf_client
-    ${EXTRA_LIBS}
+    ${EXTRA_LIBS} glog
 )
